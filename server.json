@@ -1,0 +1,45 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.carsonroell-debug/steadyfetch",
+  "title": "SteadyFetch",
+  "description": "Reliable web fetching for AI agents with retry, circuit breaker, caching, and anti-bot bypass",
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "steadyfetch",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ],
+  "remotes": [
+    {
+      "transportType": "streamable-http",
+      "url": "https://steadyfetch-production.up.railway.app/mcp"
+    }
+  ],
+  "tools": [
+    {
+      "name": "fetch_url",
+      "description": "Fetch a URL with full reliability — retry, circuit breaker, cache, and anti-bot bypass"
+    },
+    {
+      "name": "fetch_markdown",
+      "description": "Fetch a URL and return clean markdown optimized for LLMs"
+    },
+    {
+      "name": "check_domain",
+      "description": "Check circuit breaker health status for a domain"
+    },
+    {
+      "name": "cache_stats",
+      "description": "Get cache utilization metrics"
+    },
+    {
+      "name": "clear_cache",
+      "description": "Clear the fetch cache for fresh data"
+    }
+  ]
+}

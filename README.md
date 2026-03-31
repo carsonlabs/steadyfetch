@@ -1,3 +1,5 @@
+<!-- mcp-name: io.github.carsonroell-debug/steadyfetch -->
+
 # SteadyFetch
 
 **Reliable web fetching for AI agents.** Stop losing hours to Cloudflare blocks, timeouts, and flaky scrapes.
