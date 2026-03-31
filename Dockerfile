@@ -28,15 +28,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR /app
 
 # Install Python deps
-COPY pyproject.toml .
+COPY pyproject.toml README.md ./
+COPY steadyfetch/ steadyfetch/
 RUN pip install --no-cache-dir .
 
 # Install Playwright browsers
 RUN playwright install chromium
 RUN crawl4ai-setup || true
-
-# Copy source
-COPY steadyfetch/ steadyfetch/
 
 # Cache directory
 RUN mkdir -p /tmp/steadyfetch_cache
