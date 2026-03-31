@@ -1,6 +1,6 @@
 [project]
 name = "steadyfetch"
-version = "0.1.0"
+version = "0.1.1"
 description = "Reliable web fetching for AI agents — MCP server with retry, circuit breaker, caching, and anti-bot bypass"
 readme = "README.md"
 requires-python = ">=3.11"

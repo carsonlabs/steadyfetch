@@ -4,3 +4,5 @@ __pycache__/
 dist/
 *.egg-info/
 .cache/
+.mcpregistry_github_token
+.mcpregistry_registry_token
