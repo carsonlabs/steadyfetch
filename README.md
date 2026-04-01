@@ -2,6 +2,9 @@
 
 # SteadyFetch
 
+[![PyPI](https://img.shields.io/pypi/v/steadyfetch)](https://pypi.org/project/steadyfetch/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 **Reliable web fetching for AI agents.** Stop losing hours to Cloudflare blocks, timeouts, and flaky scrapes.
 
 SteadyFetch is an MCP server that gives your AI agents reliable web access with automatic retry, circuit breaker protection, caching, and anti-bot bypass — out of the box.
