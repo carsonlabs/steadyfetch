@@ -4,6 +4,7 @@
 
 [![PyPI](https://img.shields.io/pypi/v/steadyfetch)](https://pypi.org/project/steadyfetch/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![MCPize](https://img.shields.io/badge/MCPize-Install-0ea5e9)](https://mcpize.com/mcp/steadyfetch?ref=YHCCR&utm_source=github&utm_medium=readme)
 
 **Reliable web fetching for AI agents.** Stop losing hours to Cloudflare blocks, timeouts, and flaky scrapes.
 
@@ -45,28 +46,26 @@ Agent calls fetch_url("https://example.com")
 
 ## Quick Start
 
-### As MCP Server (remote)
-
-Connect to the hosted server:
-
-```json
-{
-  "mcpServers": {
-    "steadyfetch": {
-      "url": "https://your-steadyfetch-instance.up.railway.app/mcp"
-    }
-  }
-}
-```
-
-### Self-hosted
+### Install from PyPI
 
 ```bash
 pip install steadyfetch
 steadyfetch
 ```
 
-Or with Docker:
+Then connect from Claude Desktop:
+
+```json
+{
+  "mcpServers": {
+    "steadyfetch": {
+      "command": "steadyfetch"
+    }
+  }
+}
+```
+
+### Self-host with Docker
 
 ```bash
 docker build -t steadyfetch .
@@ -97,6 +96,20 @@ All settings via environment variables:
 **Anti-bot bypass** — Stealth browser with magic mode, navigator patching, and human-like behavior simulation via Crawl4AI.
 
 **Graceful degradation** — If the browser can't get through, falls back to plain HTTP. If HTTP fails, returns a clear error with domain health status. Never hangs, never silently fails.
+
+## Free vs Pro
+
+| Tool | Free | Pro ($19/mo) |
+|------|------|-------------|
+| `fetch_url` | Yes (no JS render, no cache) | Yes (full: JS render + cache + anti-bot) |
+| `check_domain` | Yes | Yes |
+| `fetch_markdown` | - | Yes |
+| `cache_stats` | - | Yes |
+| `clear_cache` | - | Yes |
+
+Free tier gives you basic HTTP fetching and domain health checks. Pro unlocks JS rendering, anti-bot bypass, caching, and clean markdown output.
+
+**[Upgrade to Pro on MCPize](https://mcpize.com/mcp/steadyfetch?ref=YHCCR&utm_source=github&utm_medium=readme)** — $19/mo or $190/yr.
 
 ## License
 
