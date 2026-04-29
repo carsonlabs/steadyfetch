@@ -17,6 +17,21 @@ from mcp.server.fastmcp import FastMCP, Context
 
 from .fetcher import SteadyFetcher
 
+# --- MCPize License Gating ---
+MCPIZE_LICENSE_KEY = os.environ.get("MCPIZE_LICENSE_KEY", "")
+IS_PRO = bool(MCPIZE_LICENSE_KEY)
+
+PRO_UPGRADE = json.dumps({
+    "error": "Pro feature — license key required",
+    "tool_tier": "pro",
+    "message": "This tool requires a SteadyFetch Pro license. Free tools: fetch_url (no JS render), check_domain.",
+    "upgrade_url": "https://mcpize.com/mcp/steadyfetch?ref=YHCCR",
+    "pricing": "$19/mo or $190/yr",
+    "free_tools": ["fetch_url (basic)", "check_domain"],
+    "pro_tools": ["fetch_url (JS render + cache + anti-bot)", "fetch_markdown", "cache_stats", "clear_cache"],
+}, indent=2)
+
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(name)s] %(levelname)s: %(message)s",
@@ -75,6 +90,11 @@ async def fetch_url(
         js_render: Whether to render JavaScript (default: true, disable for speed)
         wait_for: CSS selector to wait for before capturing (e.g., '.results-loaded')
     """
+    # Free tier: disable JS render, cache, and anti-bot bypass
+    if not IS_PRO:
+        js_render = False
+        use_cache = False
+
     if ctx:
         ctx.info(f"Fetching {url} (cache={use_cache}, js={js_render})")
 
@@ -109,6 +129,9 @@ async def fetch_markdown(
         use_cache: Whether to use cached results (default: true)
         wait_for: CSS selector to wait for before capturing
     """
+    if not IS_PRO:
+        return PRO_UPGRADE
+
     if ctx:
         ctx.info(f"Fetching markdown for {url}")
 
@@ -150,6 +173,9 @@ async def cache_stats() -> str:
 
     Useful for monitoring cache utilization and deciding when to clear.
     """
+    if not IS_PRO:
+        return PRO_UPGRADE
+
     stats = fetcher.cache_stats()
     return json.dumps(stats, indent=2)
 
@@ -160,6 +186,9 @@ async def clear_cache() -> str:
 
     Use when you need fresh data and don't want to rely on cached results.
     """
+    if not IS_PRO:
+        return PRO_UPGRADE
+
     result = fetcher.clear_cache()
     return json.dumps(result)
 
